@@ -1,401 +1,737 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio of Bangari Sri Charan - Robotics Intern, AI Engineer, and Student.">
     <title>Bangari Sri Charan | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#4F46E5', // Indigo-600
+                        secondary: '#64748B', // Slate-500
+                        light: '#F8FAFC', // Slate-50
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
 
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="styles.css">
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
 </head>
 
-<body>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
 
     <!-- Navigation -->
-    <header class="navbar">
-        <div class="container nav-wrapper">
-            <a href="#hero" class="brand-logo">
-                <img src="logo.jpg" alt="Sri Charan"
-                    style="height: 45px; width: 45px; border-radius: 50%; padding: 2px; border: 2px solid var(--primary); margin-right: 8px;">
-                Sri Charan
-            </a>
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#home" class="text-2xl font-bold text-gray-900 tracking-tight">Sri Charan<span
+                            class="text-primary">.</span></a>
+                </div>
 
-            <nav class="nav-menu">
-                <ul class="nav-list">
-                    <li><a href="#hero" class="nav-link active">Home</a></li>
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#skills" class="nav-link">Skills</a></li>
-                    <li><a href="#projects" class="nav-link">Work</a></li>
-                    <li><a href="#experience" class="nav-link">Experience</a></li>
-                </ul>
-                <a href="#contact" class="btn btn-sm btn-primary">Let's Talk</a>
-            </nav>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="text-gray-600 hover:text-primary font-medium transition-colors">Home</a>
+                    <a href="#about" class="text-gray-600 hover:text-primary font-medium transition-colors">About</a>
+                    <a href="#skills" class="text-gray-600 hover:text-primary font-medium transition-colors">Skills</a>
+                    <a href="#work" class="text-gray-600 hover:text-primary font-medium transition-colors">Work</a>
+                    <a href="#experience"
+                        class="text-gray-600 hover:text-primary font-medium transition-colors">Experience</a>
+                    <a href="#contact"
+                        class="px-5 py-2.5 bg-primary text-white font-medium rounded-full hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200">Let's
+                        Talk</a>
+                </div>
 
-            <div class="hamburger-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-gray-900 focus:outline-none">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
             </div>
         </div>
-    </header>
 
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-nav-overlay">
-        <ul class="mobile-nav-list">
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Work</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#home"
+                    class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Home</a>
+                <a href="#about"
+                    class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">About</a>
+                <a href="#skills"
+                    class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Skills</a>
+                <a href="#work"
+                    class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Work</a>
+                <a href="#experience"
+                    class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Experience</a>
+                <a href="#contact"
+                    class="block px-3 py-2 text-base font-medium text-primary font-semibold hover:bg-gray-50 rounded-md">Let's
+                    Talk</a>
+            </div>
+        </div>
+    </nav>
 
-    <main>
-        <!-- Hero Section -->
-        <section id="hero" class="section hero-section">
-            <div class="container hero-container">
-                <div class="hero-text fade-in-up">
-                    <span class="hero-greeting">Hello, I'm</span>
-                    <h1 class="hero-title">Bangari <br> <span class="text-gradient">Sri Charan</span></h1>
-                    <p class="hero-subtitle">
-                        <strong>B.Tech Student</strong> (CSM) & <strong>Robotics Intern</strong> focused on developing
-                        AI- and IoT-enabled robotic systems, with experience in prototyping, sensor integration,
-                        embedded devices, and real-time automation.
+    <!-- Hero Section -->
+    <section id="home"
+        class="py-24 lg:py-32 flex flex-col items-center justify-center min-h-screen text-center px-4 bg-gradient-to-b from-indigo-50/50 to-white">
+        <div class="max-w-4xl mx-auto space-y-8 animate-fade-in-up">
+            <!-- Profile Picture -->
+            <div
+                class="relative w-40 h-40 md:w-52 md:h-52 mx-auto mb-8 rounded-2xl p-2 bg-white shadow-2xl ring-4 ring-indigo-50 transition-transform hover:scale-105 duration-300 rotate-3 hover:rotate-0">
+                <img src="profile.jpg" alt="Bangari Sri Charan" class="w-full h-full object-cover rounded-xl">
+                <div class="absolute -bottom-2 -right-2 p-3 bg-green-500 rounded-full border-4 border-white shadow-md">
+                </div>
+            </div>
+
+            <div
+                class="inline-flex items-center px-3 py-1 rounded-full border border-indigo-100 bg-indigo-50 text-indigo-600 text-sm font-medium">
+                👋 Hello, I'm
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold text-gray-900 tracking-tight mb-2">
+                Bangari Sri Charan
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                Aspiring <span class="text-indigo-600 font-semibold">Robotics & AI Engineer</span> building smart
+                solutions for the future.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+                <a href="#contact"
+                    class="px-8 py-3.5 bg-gray-900 text-white font-medium rounded-full hover:bg-gray-800 transition-all shadow-xl shadow-gray-200 transform hover:-translate-y-1">
+                    Get in Touch
+                </a>
+                <a href="resume.pdf" download
+                    class="px-8 py-3.5 bg-indigo-600 text-white font-medium rounded-full hover:bg-indigo-700 transition-all shadow-md shadow-indigo-200 transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                    <i data-lucide="download" class="w-4 h-4"></i> Download CV
+                </a>
+            </div>
+
+            <div class="flex justify-center gap-6 mt-12 text-gray-500">
+                <a href="https://github.com/sricharanbangari07-byte" target="_blank"
+                    class="hover:text-gray-900 transition-colors transform hover:scale-110">
+                    <i data-lucide="github" class="w-7 h-7"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/bangari-sri-charan-45073836b" target="_blank"
+                    class="hover:text-blue-600 transition-colors transform hover:scale-110">
+                    <i data-lucide="linkedin" class="w-7 h-7"></i>
+                </a>
+                <a href="mailto:sricharanbangari07@gmail.com"
+                    class="hover:text-red-500 transition-colors transform hover:scale-110">
+                    <i data-lucide="mail" class="w-7 h-7"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Image or visual -->
+                <div class="relative group">
+                    <div
+                        class="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200">
+                    </div>
+                    <div class="relative bg-white border border-gray-100 rounded-2xl p-8 shadow-xl">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Personal Details</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4">
+                                <span class="p-2 bg-indigo-50 text-indigo-600 rounded-lg"><i data-lucide="phone"
+                                        class="w-5 h-5"></i></span>
+                                <div>
+                                    <p class="text-sm text-gray-500">Phone</p>
+                                    <p class="font-medium text-gray-900">+91 9059012547</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <span class="p-2 bg-indigo-50 text-indigo-600 rounded-lg"><i data-lucide="mail"
+                                        class="w-5 h-5"></i></span>
+                                <div>
+                                    <p class="text-sm text-gray-500">Email</p>
+                                    <p class="font-medium text-gray-900 break-all">sricharanbangari07@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <span class="p-2 bg-indigo-50 text-indigo-600 rounded-lg"><i data-lucide="map-pin"
+                                        class="w-5 h-5"></i></span>
+                                <div>
+                                    <p class="text-sm text-gray-500">Address</p>
+                                    <p class="font-medium text-gray-900">
+                                        8-1-330, Hanuman Nagar, Godavarikhani,<br>
+                                        Ramagundam, Peddapalli, Telangana
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div>
+                    <h2 class="text-sm font-bold tracking-wide text-indigo-600 uppercase mb-3">About Me</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Education & Background</h3>
+                    <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+                        I am an enthusiastic engineering student with a strong passion for robotics, AI, and IoT. I am
+                        constantly learning and applying my skills to build real-world solutions that can make a
+                        difference.
                     </p>
-                    <div class="btn-group">
-                        <a href="#projects" class="btn btn-primary">View My Work</a>
-                        <a href="resume.pdf" download class="btn btn-outline">Download CV <i
-                                class="fas fa-download"></i></a>
-                    </div>
 
-                    <div class="hero-stats">
-                        <div class="stat">
-                            <strong>2024-Present</strong> <br> Student
+                    <div class="space-y-8">
+                        <!-- Education Item 1 -->
+                        <div class="relative pl-8 border-l-2 border-indigo-100">
+                            <div
+                                class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-indigo-600 ring-4 ring-indigo-50">
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900">B.Tech - CSM</h4>
+                            <p class="text-indigo-600 font-medium">Trinity College of Engineering and Technology</p>
+                            <p class="text-gray-500 text-sm mb-1">2024 – Present (Expected 2028)</p>
                         </div>
-                        <div class="stat-divider"></div>
-                        <div class="stat">
-                            <strong>3+</strong> Major Projects
-                        </div>
-                        <div class="stat-divider"></div>
-                        <div class="stat">
-                            <strong>1</strong> Internship
-                        </div>
-                    </div>
-                </div>
 
-                <div class="hero-visual fade-in-up delay-200">
-                    <div class="visual-card">
-                        <div class="code-badge"><i class="fas fa-code"></i> AI & ML</div>
-                        <div class="design-badge"><i class="fas fa-robot"></i> Robotics</div>
-                        <div class="image-wrapper">
-                            <img src="profile.jpg" alt="Bangari Sri Charan" class="profile-img">
+                        <!-- Education Item 2 -->
+                        <div class="relative pl-8 border-l-2 border-gray-100">
+                            <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gray-300"></div>
+                            <h4 class="text-lg font-bold text-gray-900">Post Secondary (MPC)</h4>
+                            <p class="text-indigo-600 font-medium">Sri Kakatiya Junior College</p>
+                            <p class="text-gray-500 text-sm mb-1">2021 – 2023</p>
+                            <p class="text-sm text-gray-500">Aggregate: 53%</p>
+                        </div>
+
+                        <!-- Education Item 3 -->
+                        <div class="relative pl-8 border-l-2 border-transparent">
+                            <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gray-300"></div>
+                            <h4 class="text-lg font-bold text-gray-900">SSC</h4>
+                            <p class="text-indigo-600 font-medium">Geethanjali EM HS</p>
+                            <p class="text-gray-500 text-sm mb-1">2021 – 2022</p>
+                            <p class="text-sm text-gray-500">Aggregate: 8.7 GPA</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- About Section -->
-        <section id="about" class="section about-section">
-            <div class="container">
-                <div class="section-header center-align">
-                    <h2 class="section-title">Who I Am</h2>
-                    <p class="section-desc">More than just code.</p>
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 bg-gray-50/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-sm font-bold tracking-wide text-indigo-600 uppercase mb-3">My Expertise</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-900">Technical Skills</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Skill Category -->
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100">
+                    <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-6">
+                        <i data-lucide="code-2" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-4">Programming & DB</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-gray-600">
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500 mr-3"></i> Python, Flask
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500 mr-3"></i> Replit
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500 mr-3"></i> PostgreSQL
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500 mr-3"></i> SQLite
+                        </li>
+                    </ul>
                 </div>
 
-                <div class="about-content">
-                    <div class="about-card highlight-card">
-                        <h3><i class="fas fa-university" style="color: var(--primary); margin-right: 10px;"></i>
-                            Education</h3>
-                        <p>
-                            <strong>B.Tech 2nd Year Student</strong> in <strong>CSM</strong> (Computer Science & Machine
-                            Learning)
-                            at <strong>Trinity College of Engineering and Technology</strong>, Peddapalli.
-                            (2024 – 2028).
+                <!-- Skill Category -->
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100">
+                    <div
+                        class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center text-purple-600 mb-6">
+                        <i data-lucide="brain-circuit" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-4">AI & ML</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-gray-600">
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500 mr-3"></i> Model Development
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500 mr-3"></i> PyTorch
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500 mr-3"></i> OR-Tools
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500 mr-3"></i> Optimization
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Skill Category -->
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100">
+                    <div class="w-12 h-12 bg-teal-50 rounded-xl flex items-center justify-center text-teal-600 mb-6">
+                        <i data-lucide="cloud" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-4">Cloud & IoT</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-gray-600">
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500 mr-3"></i> Cloud Deployment
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500 mr-3"></i> Raspberry Pi
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500 mr-3"></i> Real-Time Data
+                            Ingestion
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Skill Category -->
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100">
+                    <div
+                        class="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center text-orange-600 mb-6">
+                        <i data-lucide="globe" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-4">Geospatial</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-gray-600">
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500 mr-3"></i> GIS Data
+                            Integration
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500 mr-3"></i> Traffic Mapping
+                            (ISRO Bhuvan)
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Skill Category -->
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100">
+                    <div class="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center text-red-600 mb-6">
+                        <i data-lucide="car" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-4">Smart Mobility</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-gray-600">
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500 mr-3"></i> Intelligent
+                            Transport Systems
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500 mr-3"></i> NAVIC GPS Routing
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Skill Category -->
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100">
+                    <div
+                        class="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600 mb-6">
+                        <i data-lucide="bar-chart-3" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-4">Others</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-gray-600">
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500 mr-3"></i> Dashboarding &
+                            Analytics
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500 mr-3"></i> Event Management
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500 mr-3"></i> Prompt Engineering
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work/Projects Section -->
+    <section id="work" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Hardware & Toolkit Section -->
+            <div class="mt-8 mb-20">
+                <div class="text-center mb-12">
+                    <h2 class="text-2xl font-bold text-gray-900">Hardware & IoT Arsenal</h2>
+                    <p class="text-gray-600 mt-2">Specialized components and microcontrollers I work with</p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                    <!-- ESP32 -->
+                    <div
+                        class="p-6 bg-white rounded-xl border border-gray-100 shadow-sm text-center hover:shadow-md transition-all group">
+                        <div
+                            class="w-12 h-12 mx-auto bg-gray-50 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <i data-lucide="wifi" class="w-6 h-6 text-indigo-600"></i>
+                        </div>
+                        <h5 class="font-bold text-gray-900 text-sm">ESP32</h5>
+                        <p class="text-xs text-gray-500 mt-1">IoT & Wi-Fi</p>
+                    </div>
+
+                    <!-- Arduino Nano -->
+                    <div
+                        class="p-6 bg-white rounded-xl border border-gray-100 shadow-sm text-center hover:shadow-md transition-all group">
+                        <div
+                            class="w-12 h-12 mx-auto bg-gray-50 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <i data-lucide="cpu" class="w-6 h-6 text-blue-600"></i>
+                        </div>
+                        <h5 class="font-bold text-gray-900 text-sm">Arduino Nano</h5>
+                        <p class="text-xs text-gray-500 mt-1">Microcontroller</p>
+                    </div>
+
+                    <!-- Raspberry Pi -->
+                    <div
+                        class="p-6 bg-white rounded-xl border border-gray-100 shadow-sm text-center hover:shadow-md transition-all group">
+                        <div
+                            class="w-12 h-12 mx-auto bg-gray-50 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <i data-lucide="server" class="w-6 h-6 text-red-600"></i>
+                        </div>
+                        <h5 class="font-bold text-gray-900 text-sm">Raspberry Pi</h5>
+                        <p class="text-xs text-gray-500 mt-1">Quad Core, 4GB RAM</p>
+                    </div>
+
+                    <!-- Sensors -->
+                    <div
+                        class="p-6 bg-white rounded-xl border border-gray-100 shadow-sm text-center hover:shadow-md transition-all group">
+                        <div
+                            class="w-12 h-12 mx-auto bg-green-50 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <i data-lucide="radio" class="w-6 h-6 text-green-600"></i>
+                        </div>
+                        <h5 class="font-bold text-gray-900 text-sm">LiDAR/IR</h5>
+                        <p class="text-xs text-gray-500 mt-1">ToF & Obstacle Avg.</p>
+                    </div>
+
+                    <!-- Motors -->
+                    <div
+                        class="p-6 bg-white rounded-xl border border-gray-100 shadow-sm text-center hover:shadow-md transition-all group">
+                        <div
+                            class="w-12 h-12 mx-auto bg-gray-50 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <i data-lucide="settings" class="w-6 h-6 text-orange-600"></i>
+                        </div>
+                        <h5 class="font-bold text-gray-900 text-sm">Servo/DC</h5>
+                        <p class="text-xs text-gray-500 mt-1">Actuators</p>
+                    </div>
+
+                    <!-- Modules -->
+                    <div
+                        class="p-6 bg-white rounded-xl border border-gray-100 shadow-sm text-center hover:shadow-md transition-all group">
+                        <div
+                            class="w-12 h-12 mx-auto bg-gray-50 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <i data-lucide="bluetooth" class="w-6 h-6 text-blue-400"></i>
+                        </div>
+                        <h5 class="font-bold text-gray-900 text-sm">HC-05/06</h5>
+                        <p class="text-xs text-gray-500 mt-1">Communication</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Robotics Documentation -->
+            <div class="mt-20 space-y-12">
+                <div class="text-center mb-12">
+                    <h2 class="text-sm font-bold tracking-wide text-indigo-600 uppercase mb-3">Portfolio</h2>
+                    <h2 class="text-3xl font-bold text-gray-900">Robotics & Innovation</h2>
+                    <p class="text-gray-600 mt-2 text-lg">Deep dive into my technical implementations</p>
+                </div>
+
+                <!-- Featured Robot Project 1 -->
+                <div
+                    class="bg-white rounded-3xl border border-gray-100 shadow-xl overflow-hidden flex flex-col lg:flex-row">
+                    <div
+                        class="lg:w-2/5 p-8 bg-gray-900 text-white flex flex-col justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-indigo-600 to-purple-800 opacity-50"></div>
+                        <div class="relative z-10">
+                            <div
+                                class="w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center mb-6">
+                                <i data-lucide="video" class="w-8 h-8 text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">Smart Traffic AI</h3>
+                            <p class="text-indigo-200 mb-6">Computer Vision & IoT Integration</p>
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-3">
+                                    <i data-lucide="cpu" class="w-5 h-5 text-indigo-400"></i>
+                                    <span class="text-sm">Raspberry Pi 4 / Jetson Nano</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i data-lucide="eye" class="w-5 h-5 text-indigo-400"></i>
+                                    <span class="text-sm">OpenCV & YOLOv8</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i data-lucide="wifi" class="w-5 h-5 text-indigo-400"></i>
+                                    <span class="text-sm">Cloud Dashboard Integration</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-3/5 p-8 lg:p-12">
+                        <h4 class="text-xl font-bold text-gray-900 mb-4">Project Overview</h4>
+                        <p class="text-gray-600 leading-relaxed mb-6">
+                            Constructed an intelligent traffic management system using real-time CCTV feeds and IoT
+                            sensors. The system dynamically adjusts traffic light timings based on vehicle density
+                            detection, reducing congestion by 30%.
+                        </p>
+                        <h5 class="font-bold text-gray-900 mb-3 text-sm uppercase tracking-wide">Components Used</h5>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span
+                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm border border-gray-200">Picamera
+                                Module</span>
+                            <span
+                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm border border-gray-200">Ultrasonic
+                                Sensors</span>
+                            <span
+                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm border border-gray-200">Servo
+                                Motors</span>
+                            <span
+                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm border border-gray-200">Python</span>
+                        </div>
+                        <button
+                            class="text-indigo-600 font-semibold hover:text-indigo-700 flex items-center gap-2 transition-colors">
+                            View Documentation <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Featured Robot Project 2 -->
+                <div
+                    class="bg-white rounded-3xl border border-gray-100 shadow-xl overflow-hidden flex flex-col lg:flex-row-reverse">
+                    <div
+                        class="lg:w-2/5 p-8 bg-gray-900 text-white flex flex-col justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-bl from-teal-600 to-green-800 opacity-50"></div>
+                        <div class="relative z-10">
+                            <div
+                                class="w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center mb-6">
+                                <i data-lucide="zap" class="w-8 h-8 text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">EV Wireless Charging</h3>
+                            <p class="text-teal-200 mb-6">Resonant Inductive Coupling</p>
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-3">
+                                    <i data-lucide="battery-charging" class="w-5 h-5 text-teal-400"></i>
+                                    <span class="text-sm">Optimized Coil Design</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i data-lucide="cpu" class="w-5 h-5 text-teal-400"></i>
+                                    <span class="text-sm">Arduino / ESP32 Control</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i data-lucide="activity" class="w-5 h-5 text-teal-400"></i>
+                                    <span class="text-sm">Efficiency Monitoring</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-3/5 p-8 lg:p-12">
+                        <h4 class="text-xl font-bold text-gray-900 mb-4">Project Overview</h4>
+                        <p class="text-gray-600 leading-relaxed mb-6">
+                            Designed a prototype for wireless electric vehicle charging systems. Focused on optimizing
+                            power transfer efficiency using resonant inductive coupling and real-time monitoring via a
+                            mobile app.
+                        </p>
+                        <h5 class="font-bold text-gray-900 mb-3 text-sm uppercase tracking-wide">Components Used</h5>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span
+                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm border border-gray-200">Copper
+                                Coils</span>
+                            <span
+                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm border border-gray-200">Inverter
+                                Circuit</span>
+                            <span
+                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm border border-gray-200">OLED
+                                Display</span>
+                            <span
+                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm border border-gray-200">Current
+                                Sensors</span>
+                        </div>
+                        <button
+                            class="text-teal-600 font-semibold hover:text-teal-700 flex items-center gap-2 transition-colors">
+                            View Documentation <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Original Projects Section (Grid) -->
+                <div class="mt-16 text-center mb-8">
+                    <h3 class="text-2xl font-bold text-gray-900">More Projects</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Project Card -->
+                    <div
+                        class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-lg shadow-gray-100 hover:shadow-xl transition-shadow duration-300">
+                        <div
+                            class="h-48 bg-gradient-to-r from-red-700 to-pink-900 flex items-center justify-center text-white">
+                            <i data-lucide="heart-pulse" class="w-16 h-16 opacity-50"></i>
+                        </div>
+                        <div class="p-8">
+                            <div class="flex items-center justify-between mb-4">
+                                <span
+                                    class="px-3 py-1 bg-red-50 text-red-700 text-xs font-semibold rounded-full uppercase tracking-wide">Healthcare</span>
+                            </div>
+                            <h4 class="text-2xl font-bold text-gray-900 mb-3">AI Healthcare</h4>
+                            <p class="text-gray-600 mb-6">Implemented AI-driven solutions for healthcare applications,
+                                focusing on efficiency and patient care.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">Artificial
+                                    Intelligence</span>
+                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">Healthcare</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-24 bg-gray-50/50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-sm font-bold tracking-wide text-indigo-600 uppercase mb-3">Career History</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-900">Experience</h3>
+            </div>
+
+            <div class="relative bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-gray-100">
+                <div class="flex flex-col md:flex-row gap-6 md:items-start">
+                    <div class="flex-shrink-0">
+                        <div
+                            class="w-16 h-16 bg-indigo-100 rounded-xl flex items-center justify-center text-indigo-600">
+                            <i data-lucide="briefcase" class="w-8 h-8"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-bold text-gray-900">Robotics Intern</h4>
+                        <p class="text-lg text-indigo-600 font-medium mb-2">Coding Yantra Learning Solution</p>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            Gained hands-on experience in robotics, working on designing and programming intelligent
+                            systems. Collaborated with a team to develop educational robotics solutions.
                         </p>
                     </div>
-
-                    <div class="about-bio">
-                        <p style="margin-bottom: 20px;">
-                            I am a robotics enthusiast and aspiring AI engineer. Currently working as a <strong>Robotics
-                                Intern at Coding Yantra Learning Solution</strong>.
-                        </p>
-                        <p>
-                            <strong>My Focus:</strong> Developing AI and IoT solutions, smart traffic management, and
-                            renewable energy systems.
-                            I was a finalist at <strong>CodeBot Hackathon 2025</strong> and actively participate in R&D
-                            and national hackathons.
-                        </p>
-                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Skills Section -->
-        <section id="skills" class="section alt-bg">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Technical Skills</h2>
-                    <p class="section-desc">Tools I use to innovate.</p>
-                </div>
+    <!-- Let's Talk / Contact Section -->
+    <section id="contact" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-indigo-50/50 -skew-y-3 transform origin-top-left scale-110 z-0"></div>
+        <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row">
+                <!-- Contact Info -->
+                <div class="bg-gray-900 p-12 text-white md:w-2/5 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-3xl font-bold mb-2">Let's Talk</h3>
+                        <p class="text-gray-400 mb-8">Ready to start a project? Need a consultation? Feel free to
+                            contact me.</p>
 
-                <div class="skills-grid">
-                    <!-- Card 1 -->
-                    <div class="skill-card">
-                        <div class="icon-box"><i class="fas fa-laptop-code"></i></div>
-                        <h3>Programming & DB</h3>
-                        <div class="tags">
-                            <span>Python</span>
-                            <span>Flask</span>
-                            <span>Replit</span>
-                            <span>PostgreSQL</span>
-                            <span>SQLite</span>
-                        </div>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="skill-card">
-                        <div class="icon-box"><i class="fas fa-brain"></i></div>
-                        <h3>AI & ML</h3>
-                        <div class="tags">
-                            <span>PyTorch</span>
-                            <span>OR-Tools</span>
-                            <span>Model Optimization</span>
-                            <span>Model Development</span>
-                        </div>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="skill-card">
-                        <div class="icon-box"><i class="fas fa-globe-asia"></i></div>
-                        <h3>Geospatial & Smart Mobility</h3>
-                        <div class="tags">
-                            <span>GIS Integration</span>
-                            <span>ISRO Bhuvan</span>
-                            <span>Traffic Mapping</span>
-                            <span>NAVIC GPS</span>
-                            <span>Intelligent Transport</span>
-                        </div>
-                    </div>
-                    <!-- Card 4 -->
-                    <div class="skill-card">
-                        <div class="icon-box"><i class="fas fa-microchip"></i></div>
-                        <h3>IoT & Cloud</h3>
-                        <div class="tags">
-                            <span>Raspberry Pi</span>
-                            <span>Cloud Deployment</span>
-                            <span>Real-Time Data</span>
-                            <span>CCTV & Sensors</span>
-                            <span>Dashboarding</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="section projects-section">
-            <div class="container">
-                <div class="section-header center-align">
-                    <h2 class="section-title">Featured Work</h2>
-                    <p class="section-desc">Innovation in action.</p>
-                </div>
-
-                <div class="project-showcase">
-                    <!-- Project 1 -->
-                    <article class="project-row">
-                        <div class="project-image">
-                            <div class="mockup">
-                                <i class="fas fa-leaf"></i>
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4">
+                                <i data-lucide="phone" class="w-5 h-5 text-indigo-400"></i>
+                                <span>+91 9059012547</span>
                             </div>
-                        </div>
-                        <div class="project-details">
-                            <span class="project-category">Sustainability</span>
-                            <h3>Renewable Energy</h3>
-                            <p>
-                                Led projects focused on sustainable energy solutions.
-                            </p>
-                            <ul class="tech-stack-list">
-                                <li>IoT</li>
-                                <li>Energy Mgmt</li>
-                            </ul>
-                            <a href="#" class="link-arrow">View Details <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-
-                    <!-- Project 2 -->
-                    <article class="project-row reverse">
-                        <div class="project-image">
-                            <div class="mockup gradient-2">
-                                <i class="fas fa-heartbeat"></i>
+                            <div class="flex items-center gap-4">
+                                <i data-lucide="mail" class="w-5 h-5 text-indigo-400"></i>
+                                <span class="break-all">sricharanbangari07@gmail.com</span>
                             </div>
-                        </div>
-                        <div class="project-details">
-                            <span class="project-category">Healthcare</span>
-                            <h3>AI Healthcare</h3>
-                            <p>
-                                Developed AI-driven solutions for healthcare applications.
-                            </p>
-                            <ul class="tech-stack-list">
-                                <li>AI/ML</li>
-                                <li>Python</li>
-                            </ul>
-                            <a href="#" class="link-arrow">View Details <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-
-                    <!-- Project 3 -->
-                    <article class="project-row">
-                        <div class="project-image">
-                            <div class="mockup gradient-3">
-                                <i class="fas fa-charging-station"></i>
-                            </div>
-                        </div>
-                        <div class="project-details">
-                            <span class="project-category">Automotive</span>
-                            <h3>EV Wireless Systems</h3>
-                            <p>
-                                Worked on wireless charging and management systems for Electric Vehicles.
-                            </p>
-                            <ul class="tech-stack-list">
-                                <li>Electronics</li>
-                                <li>Wireless Tech</li>
-                            </ul>
-                            <a href="#" class="link-arrow">View Details <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience" class="section alt-bg">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Experience</h2>
-                    <p class="section-desc">My professional journey.</p>
-                </div>
-
-                <div class="journey-container">
-                    <!-- Item 1 -->
-                    <div class="journey-item">
-                        <div class="journey-marker"></div>
-                        <div class="journey-card">
-                            <span class="journey-date">Present</span>
-                            <h3 class="journey-role">Robotics Intern</h3>
-                            <h4 class="journey-company">Coding Yantra Learning Solution</h4>
-                            <p class="journey-desc">
-                                Developing AI and IoT solutions for smart traffic management.
-                                Finalist at CodeBot Hackathon 2025.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Item 2 -->
-                    <div class="journey-item">
-                        <div class="journey-marker"></div>
-                        <div class="journey-card">
-                            <span class="journey-date">Present</span>
-                            <h3 class="journey-role">R&D Cell Member</h3>
-                            <h4 class="journey-company">Trinity College of Engineering and Technology</h4>
-                            <p class="journey-desc">
-                                Active R&D member. Skills in event management, prompt engineering, and multimedia
-                                editing.
-                                Participant in major national hackathons.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="section contact-section">
-            <div class="container">
-                <div class="section-header center-align">
-                    <h2 class="section-title">Get In Touch</h2>
-                    <p class="section-desc">Have a project in mind? Let’s talk.</p>
-                </div>
-
-                <div class="contact-content-grid">
-                    <!-- Contact Info -->
-                    <div class="contact-info-card">
-                        <div class="info-item">
-                            <div class="info-icon"><i class="fas fa-envelope"></i></div>
-                            <div>
-                                <h4>Email Me</h4>
-                                <a href="mailto:sricharanbangari07@gmail.com">sricharanbangari07@gmail.com</a>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-icon"><i class="fas fa-phone"></i></div>
-                            <div>
-                                <h4>Call Me</h4>
-                                <a href="tel:+919059012547">+91 9059012547</a>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <div>
-                                <h4>Location</h4>
-                                <p>8-1-330, Hanuman Nagar,<br>Godavarikhani, Ramagundam,<br>Peddapalli, Telangana</p>
+                            <div class="flex items-center gap-4">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-indigo-400"></i>
+                                <span>Peddapalli, Telangana</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Contact Form -->
-                    <form class="contact-form-box" id="contactForm">
-                        <div class="input-group">
-                            <input type="text" name="name" placeholder="Your Name" required>
+                    <div class="flex gap-4 mt-8">
+                        <a href="https://github.com/sricharanbangari07-byte"
+                            class="p-2 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors">
+                            <i data-lucide="github" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/bangari-sri-charan-45073836b"
+                            class="p-2 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="p-12 md:w-3/5 bg-white">
+                    <form onsubmit="event.preventDefault(); alert('Message sent! (Demo only)');" class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                            <input type="text"
+                                class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-indigo-500 focus:ring-0 outline-none transition-all"
+                                placeholder="John Doe">
                         </div>
-                        <div class="input-group">
-                            <input type="email" name="email" placeholder="Your Email" required>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <input type="email"
+                                class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-indigo-500 focus:ring-0 outline-none transition-all"
+                                placeholder="john@example.com">
                         </div>
-                        <div class="input-group">
-                            <textarea name="message" rows="5" placeholder="Project Details" required></textarea>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                            <textarea rows="4"
+                                class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-indigo-500 focus:ring-0 outline-none transition-all"
+                                placeholder="Tell me about your project..."></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">
-                            Send Message <i class="fas fa-paper-plane"></i>
+                        <button
+                            class="w-full py-4 px-6 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-lg shadow-indigo-200 transition-all transform hover:-translate-y-1">
+                            Send Message
                         </button>
                     </form>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-flex">
-                <div class="footer-brand">
-                    <h3>Sri Charan</h3>
-                    <p>Building the future with AI & Robotics.</p>
-                </div>
-                <div class="social-icons">
-                    <a href="https://github.com/sricharanbangari07-byte" target="_blank"><i
-                            class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/bangari-sri-charan-45073836b" target="_blank"><i
-                            class="fab fa-linkedin"></i></a>
-                </div>
-            </div>
-            <div class="footer-copy">
-                &copy; 2026 Bangari Sri Charan. All Rights Reserved.
-            </div>
+    <footer class="bg-white border-t border-gray-100 py-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-gray-500">© 2026 Bangari Sri Charan. All rights reserved.</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Scripts -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+    </script>
 </body>
 
 </html>
